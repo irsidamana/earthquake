@@ -1,26 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './styles/App.css';
+import FetchData from './components/FetchData.js';
+import ErrorBoundary from './components/ErrorBoundary.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+/**
+ * A class for calling all the components to be shown in the page.
+ */
+class App extends React.Component {
+  render() {
+    return (
+      <div className = "App">
+        <ErrorBoundary>
+          <FetchData />
+        </ErrorBoundary>
+      </div>
+    );
+  }
 }
 
 export default App;

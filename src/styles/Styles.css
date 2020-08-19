@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+/* Styles for Header.js */
+.Header {
+  text-align: center;
+  color: rgb(194,59,34);
+  font-size: 3.5rem;
+  font-family: "Open Sans", sans-serif;
+}
+
+.Header1 {
+  text-align: center;
+  color: rgb(120, 138, 122);
+  font-size: 1.5rem;
+  font-family: "Open Sans", sans-serif;
+}
+
+.Number{
+  text-align: center;
+  color: rgb(120, 138, 122);
+  font-size: 3.5rem;
+  font-family: "Open Sans", sans-serif;
+}
+
+/* Styles for Map.js */
+.Map {
+  width: 70%;
+  display: inline-block;
+  align-items: center
+}
+
+.ComposableMap {
+  width: 70%;
+  height: 20%;
+  border-style: solid;
+  border-color: rgb(120, 138, 122);
+  margin-bottom: 3%;
+}
+
+.Geography {
+  fill: rgb(141, 162, 144);
+  outline: none;
+}
+.Geography:hover {
+  fill: #FFD;
+  outline: none;
+}
+
+.Continents {
+  font-size: 1rem;
+}
+
+.MapLegend {
+  float: right;
+  margin-right: -18%;
+  margin-top: -15%;
+  width: 50%;
+}
+
+/* Styles for Table.js */
+.Table {
+  width: 80%;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+}
+
+.Filter {
+  text-align: center;
+  color: rgb(64, 74, 65);
+  font-size: 1.75rem;
+  font-family: "Open Sans", sans-serif;
+  padding-bottom: 4%;
+}
+
+.Select {
+  width: 100%;
+}
+
+/* Styles for FetchData.js */
+.Chart {
+  text-align: center;
+  color: rgb(84, 97, 86);
+  font-size: 1.75rem;
+  font-family: "Open Sans", sans-serif;
+  padding-bottom: 4%;
+}
+
+.ChartDiv {
+  width: 90%;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+}
+
+.Padding {
+  padding-top: 2%;
+  padding-bottom: 6%;
+}
+
+/* Styles for many files */
+.Color1 {
+  background-color: rgb(222, 226, 217);
+}
+.Color2 {
+  background-color: rgb(190, 199, 180);
+}
+.Color3 {
+  background-color: rgb(141, 162, 144);
+}

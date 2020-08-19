@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Table.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Table.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import "react-table-6/react-table.css";
+import ReactTable from "react-table-6";
+import matchSorter from 'match-sorter';
+import ErrorBoundary from './ErrorBoundary.js';
+import '../styles/Styles.css';
+
+
+/**
+ * A class for the table giving detailed information about
+ * the earthquakes happening in the world in the last 24 hours.
+ */
+export default class Table extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      columns: [{
+        Header: "ID",
+        id: "id",
+        accessor: "id",
+        show: true,
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, {
+            keys: ["id"]
+          }),
+        filterAll: true
+      },
+      {
+        Header: "Type",
+        accessor: "type",
+        show: true,
+        filterMethod: (filter, row) => {
+          if (filter.value === "all") {
+            return true;
+          }
+          if (filter.value === "earthquake") {
+            return row[filter.id] === "earthquake";
+          }
+          return row[filter.id] === "quarry blast";
+        },
+        Filter: ({
+          filter,
+          onChange
+        }) =>
+        &lt;select onChange = {event => onChange(event.target.value)}
+                className="Select"
+                value = {filter ? filter.value : "all"}
+        >
+          &lt;option value = "all" > Show All &lt;/option>
+          &lt;option value = "earthquake" > Earthquakes &lt;/option>
+          &lt;option value = "quarry blast" > Quarry Blasts &lt;/option>
+        &lt;/select>
+      },
+      {
+        Header: "Magnitude",
+        accessor: "mag",
+        show: true,
+        filterMethod: (filter, row) => {
+          return row[filter.id] > filter.value;
+        }
+
+      },
+      {
+        Header: "Significance",
+        accessor: "sig",
+        show: true,
+        filterMethod: (filter, row) => {
+          return row[filter.id] > filter.value;
+        }
+      },
+      {
+        Header: "Alert Level",
+        accessor: "alert",
+        show: false
+      },
+      {
+        Header: "Status",
+        accessor: "status",
+        show: true,
+        filterMethod: (filter, row) => {
+          if (filter.value === "all") {
+            return true;
+          }
+          if (filter.value === "automatic") {
+            return row[filter.id] === "automatic";
+          }
+          if (filter.value === "reviewed") {
+            return row[filter.id] === "reviewed";
+          }
+          return row[filter.id] === "deleted";
+        },
+        Filter: ({
+          filter,
+          onChange
+        }) =>
+        &lt;select onChange = {event => onChange(event.target.value)}
+                className="Select"
+                value = {filter ? filter.value : "all"}
+        >
+          &lt;option value = "all" > Show All &lt;/option>
+          &lt;option value = "automatic" > Automatic &lt;/option>
+          &lt;option value = "reviewed" > Reviewed &lt;/option>
+          &lt;option value = "deleted" > Deleted &lt;/option>
+        &lt;/select>
+      },
+      {
+        Header: "Place",
+        id: "place",
+        accessor: "place",
+        show: true,
+        filterMethod: (filter, rows) =>
+          matchSorter(rows, filter.value, {
+            keys: ["place"]
+          }),
+        filterAll: true
+      },
+      {
+        Header: "Time",
+        accessor: "time",
+        show: true,
+        filterMethod: (filter, row) => {
+          return row[filter.id] > filter.value;
+        }
+      },
+      {
+        Header: "Coordinates",
+        accessor: "coordinates",
+        show: false
+      },
+      {
+        Header: "IDs",
+        accessor: "ids",
+        show: false
+      }],
+      data: {}
+    };
+  }
+
+  render() {
+    return (
+      &lt;div className="Table">
+        &lt;ErrorBoundary>
+          &lt;h1 className="Filter">Filter by preference&lt;/h1>
+          &lt;ReactTable data = {this.props.data}
+                      filterable defaultFilterMethod = {(filter, row) =>row[filter.id] === filter.value}
+                      minRows = {0}
+                      defaultPageSize = {10}
+                      columns = {this.state.columns}
+                      className="Color3"
+          />
+        &lt;/ErrorBoundary>
+      &lt;/div>
+    );
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="module.exports.html">exports</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Wed Aug 19 2020 13:59:48 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Map.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Map.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import {
+  ZoomableGroup,
+  ComposableMap,
+  Geographies,
+  Geography,
+  Marker
+} from "react-simple-maps";
+import ErrorBoundary from './ErrorBoundary.js';
+import '../styles/Styles.css';
+import map_legend from '../img/map_legend.svg'
+
+const geoUrl =
+  "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
+
+const markers = [
+  {name: "North America", coordinates: [-101, 53]},
+  {name: "Europe", coordinates: [18, 48]},
+  {name: "South America", coordinates: [-57, -15]},
+  {name: "Africa", coordinates: [20, 10]},
+  {name: "Asia", coordinates: [88, 45]},
+  {name: "Australia", coordinates: [135, -25]},
+  {name: "Antarctica", coordinates: [75, -78]}
+];
+
+/**
+ * A class for the map showing all the earthquake locations in the world.
+ */
+export default class Map extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+    };
+  }
+  render() {
+    return (
+        &lt;ErrorBoundary>
+          &lt;div className="Map">
+            &lt;div>
+              &lt;ComposableMap projectionConfig = {{ scale: 160 }} className="ComposableMap">
+                &lt;ZoomableGroup>
+                  &lt;Geographies geography = {geoUrl}>
+                  {
+                    ({geographies}) => geographies.map(geo => (
+                      &lt;Geography key = {geo.rsmKey}
+                                 geography = {geo}
+                                 fill = "#EAEAEC"
+                                 stroke = "#E6D6DA"
+                                 className="Geography"
+                      />
+                    ))
+                  }
+                  &lt;/Geographies>
+
+                  {
+                    this.props.coordinates.map((coo, i) => {
+                        if (coo.type === "earthquake") {
+                          if (coo.status === "reviewed") {
+                            return (
+                              &lt; Marker key = {i} coordinates = {coo.coordinates} >
+                                &lt;circle r = {(coo.mag + 2) * 1.2}
+                                fill = "#000"/>
+                                &lt;circle r = {(coo.mag + 2)} fill = "#F00"/>
+                              &lt;/Marker>);
+                          }
+                          else {
+                            return (
+                              &lt; Marker key = {i} coordinates = {coo.coordinates} >
+                                &lt;circle r = {(coo.mag + 2) * 1.2} fill = "#F00"/>
+                              &lt;/Marker>);
+                          }
+                        }
+                        else if (coo.type === "quarry blast") {
+                          if (coo.status === "reviewed") {
+                            return (
+                              &lt; Marker key = {i} coordinates = {coo.coordinates} >
+                                &lt;circle r = {(coo.mag + 2) * 1.2} fill = "#000"/>
+                                &lt;circle r = {(coo.mag + 2)} fill = "#32CD32"/>
+                              &lt;/Marker>);
+                          }
+                          else {
+                            return (
+                              &lt; Marker key = {i} coordinates = {coo.coordinates} >
+                                &lt;circle r = {(coo.mag + 2) * 1.2} fill = "#32CD32"/>
+                              &lt;/Marker>);
+                          }
+                        }
+                    })
+                  }
+
+                  {markers.map(({ name, coordinates}) => (
+                    &lt;Marker key={name} coordinates={coordinates}>
+                      &lt;text
+                        textAnchor="middle"
+                        fill = "#000"
+                        className="Continents"
+                      >
+                        {name}
+                      &lt;/text>
+                    &lt;/Marker>
+                  ))}
+
+                &lt;/ZoomableGroup>
+              &lt;/ComposableMap>
+            &lt;/div>
+            &lt;div className="MapLegend">
+              &lt;img src={map_legend} alt="Map Legend" width="25%" />
+            &lt;/div>
+          &lt;/div>
+        &lt;/ErrorBoundary>
+    );
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="module.exports.html">exports</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.5</a> on Wed Aug 19 2020 13:59:48 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
