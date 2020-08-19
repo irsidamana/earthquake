@@ -1,6 +1,9 @@
 This project tries to give information and visualize data about the earthquakes happening worldwide in the past 24 hours.
+
 The first shows a map with the earthquakes' locations, differentiating between earthquakes and quarry blasts and also between reviewed earthquakes and automatic ones.
+
 The second section shows a chart with the number of earthquakes for each one hour interval during the past 24 hours.
+
 The third section shows a table with more detailed information about the earthquakes, with the options of searching, sorting and filtering for each field.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
