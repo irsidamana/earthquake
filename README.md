@@ -11,7 +11,6 @@ In the project directory, in order to install all the necessary libraries and mo
 
 ### `npm install`
 
-
 In the src directory, you can run:
 
 ### `npm start`
