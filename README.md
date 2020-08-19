@@ -1,3 +1,5 @@
+## Earthquakes
+
 This project tries to give information and visualize data about the earthquakes happening worldwide in the past 24 hours.
 
 The first shows a map with the earthquakes' locations, differentiating between earthquakes and quarry blasts and also between reviewed earthquakes and automatic ones.
